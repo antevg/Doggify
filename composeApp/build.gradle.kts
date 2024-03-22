@@ -41,9 +41,17 @@ kotlin {
             implementation(compose.components.resources)
             implementation(libs.voyager.navigator)
             implementation(libs.composeImageLoader)
-            implementation(libs.napier)
+         //   implementation(libs.napier)
             implementation(libs.kotlinx.coroutines.core)
+
             implementation(libs.ktor.core)
+            implementation(libs.ktor.client.json)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.serialization)
+            implementation(libs.kotlinx.serialization.core)
+            implementation(libs.ktor.serialization.kotlinx.json)
+
+
             implementation(libs.composeIcons.featherIcons)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.datetime)
@@ -61,11 +69,13 @@ kotlin {
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.sqlDelight.driver.android)
+            implementation(libs.ktor.client.android)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
             implementation(libs.sqlDelight.driver.native)
+            implementation(libs.ktor.client.ios)
         }
 
     }
