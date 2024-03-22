@@ -50,6 +50,8 @@ kotlin {
             implementation(libs.ktor.client.serialization)
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation("io.ktor:ktor-client-content-negotiation:2.3.7")
+           // implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.7")
 
 
             implementation(libs.composeIcons.featherIcons)
