@@ -119,7 +119,7 @@ buildConfig {
 
 sqldelight {
     databases {
-        create("MyDatabase") {
+        create("DogifyDatabase") {
             // Database configuration here.
             // https://cashapp.github.io/sqldelight
             packageName.set("com.eacipher.doggify.db")
