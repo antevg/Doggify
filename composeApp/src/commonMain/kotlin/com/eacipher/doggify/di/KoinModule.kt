@@ -38,8 +38,7 @@ private val sharedModules = listOf(
     apiModule,
     utilityModule)
 
-fun initKoin(appDeclaration: KoinAppDeclaration = {})
-= startKoin {
+fun initKoin(appDeclaration: KoinAppDeclaration) = startKoin {
     appDeclaration()
     modules(sharedModules)
 }
