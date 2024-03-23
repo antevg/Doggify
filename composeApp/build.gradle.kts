@@ -50,7 +50,7 @@ kotlin {
             implementation(libs.ktor.client.serialization)
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.ktor.serialization.kotlinx.json)
-            implementation("io.ktor:ktor-client-content-negotiation:2.3.7")
+            implementation(libs.ktor.client.content.negotiation)
            // implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.7")
 
 
@@ -115,6 +115,10 @@ android {
 buildConfig {
     // BuildConfig configuration here.
     // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
+}
+
+task("testClasses").doLast {
+    println("This is a dummy testClasses task")
 }
 
 sqldelight {
