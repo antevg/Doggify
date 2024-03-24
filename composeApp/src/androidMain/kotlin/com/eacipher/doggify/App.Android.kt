@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.ExperimentalMaterial3Api
+import com.eacipher.doggify.di.sharedModules
 import org.koin.core.component.KoinComponent
+import org.koin.core.context.startKoin
 
 class AndroidApp : Application() {
     companion object {
@@ -17,9 +19,9 @@ class AndroidApp : Application() {
         super.onCreate()
         //  startKoin { modules(getAllSharedModules()) }
         INSTANCE = this
-   //     startKoin {
-   //         modules(sharedModule)
-   //     }
+        startKoin {
+            modules(sharedModules)
+        }
     }
 }
 

@@ -1,9 +1,11 @@
 package com.eacipher.doggify.di
 
 import com.eacipher.doggify.api.BreedsApi
+import com.eacipher.doggify.db.DogifyDatabase
 import com.eacipher.doggify.model.FetchBreedsUseCase
 import com.eacipher.doggify.model.GetBreedsUseCase
 import com.eacipher.doggify.model.ToggleFavouriteStateUseCase
+import com.eacipher.doggify.repository.BreedsLocalSource
 import com.eacipher.doggify.repository.BreedsRemoteSource
 import com.eacipher.doggify.repository.BreedsRepository
 import com.eacipher.doggify.util.getDispatcherProvider
@@ -22,8 +24,10 @@ private val apiModule = module {
 }
 
 private val repositoryModule = module {
-    single { BreedsRepository(get()) }
+    single { BreedsRepository(get(), get()) }
     factory { BreedsRemoteSource(get(), get()) }
+    factory { BreedsLocalSource(get(), get()) }
+    single { DogifyDatabase(get()) }
 }
 
 private val usecaseModule = module {
@@ -32,7 +36,7 @@ private val usecaseModule = module {
     factory { ToggleFavouriteStateUseCase() }
 }
 
-private val sharedModules = listOf(
+val sharedModules = listOf(
     usecaseModule,
     repositoryModule,
     apiModule,

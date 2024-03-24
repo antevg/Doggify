@@ -4,6 +4,6 @@ import com.eacipher.doggify.db.DogifyDatabase
 
 actual class DriverFactory {
     actual fun createDriver(): SqlDriver {
-        return NativeSqliteDriver(DogifyDatabase.Schema, "test.db")
+        return NativeSqliteDriver(DogifyDatabase.Schema, "dog.db")
     }
 }

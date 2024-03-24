@@ -6,16 +6,34 @@ import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.awaitAll
 
 class BreedsRepository internal constructor(
-    private val remoteSource: BreedsRemoteSource
+    private val remoteSource: BreedsRemoteSource,
+    private val localSource: BreedsLocalSource
 ) {
-    suspend fun get() = fetch()
+    val breeds = localSource.breeds
 
-    suspend fun fetch() = supervisorScope {
+    suspend fun get() = with(localSource.selectAll()){
+        if (isNullOrEmpty()){
+            return@with fetch()
+        } else {
+            this
+        }
+    }
+
+    internal suspend fun fetch() = supervisorScope {
         remoteSource.getBreeds().map {
             async {
                 Breed(name = it,
                     imageUrl = remoteSource.getBreedImage(it))
             }
-        }.awaitAll()
+        }.awaitAll().also {
+            localSource.clear()
+            it.map {
+                async { localSource.insert(it) }
+            }.awaitAll()
+        }
+    }
+
+    suspend fun update(breed: Breed){
+        localSource.update(breed)
     }
 }
