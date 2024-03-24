@@ -16,7 +16,15 @@ internal class BreedsLocalSource(
 
 
     //Разобраться как сделать map
-    val breeds = dao.selectAll().executeAsList()//.asFlow().map { Breed(it.name, it.imageUrl, it.isFavourite ?: false) }
+    val breeds = dao.selectAll()
+        .executeAsList()
+        .asFlow()
+        .map { list ->
+            listOf(list).map { Breed(it.name, it.imageUrl, it.isFavourite ?: false) }
+        }
+
+//    override val breeds1 = dao.selectAll().asFlow().mapToList()
+//        .map { breeds -> breeds.map { Breed(it.name, it.imageUrl, it.isFavourite ?: false) } }
 
 
     suspend fun selectAll() =

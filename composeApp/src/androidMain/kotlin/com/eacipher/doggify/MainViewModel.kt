@@ -46,6 +46,9 @@ class MainViewModel(
             emptyList()
         )
 
+
+
+
     enum class State {
         LOADING,
         NORMAL,

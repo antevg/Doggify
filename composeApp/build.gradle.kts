@@ -76,7 +76,9 @@ kotlin {
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
-            implementation(libs.sqlDelight.driver.native)
+            implementation("app.cash.sqldelight:native-driver:2.0.1")
+      //      implementation(libs.sqlDelight.driver.native)
+      //      implementation("com.squareup.sqldelight:native-driver:$1.5.1")
             implementation(libs.ktor.client.ios)
         }
 
