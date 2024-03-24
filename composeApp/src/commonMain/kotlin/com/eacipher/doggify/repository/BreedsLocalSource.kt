@@ -3,6 +3,8 @@ package com.eacipher.doggify.repository
 import com.eacipher.doggify.db.DogifyDatabase
 import com.eacipher.doggify.model.Breed
 import com.eacipher.doggify.util.DispatcherProvider
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 internal class BreedsLocalSource(
@@ -14,9 +16,8 @@ internal class BreedsLocalSource(
 
 
     //Разобраться как сделать map
-    val breeds = dao.selectAll().executeAsList().map {
-        Breed(it.name, it.imageUrl, it.isFavourite ?: false)
-    }
+    val breeds = dao.selectAll().executeAsList()//.asFlow().map { Breed(it.name, it.imageUrl, it.isFavourite ?: false) }
+
 
     suspend fun selectAll() =
         withContext(dispatcherProvider.io){
